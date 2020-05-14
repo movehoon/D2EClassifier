@@ -1,6 +1,10 @@
 # D2EClassifier
 Speech classifier of D2E AI block
 
+## Requirements
+- This project support the [InteliJ IDEA](https://www.jetbrains.com/idea/)
+- JDK 11
+
 ## Run
 - On Ubuntu or Mac
 
