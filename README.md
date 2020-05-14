@@ -3,7 +3,7 @@ Speech classifier of D2E AI block
 
 ## Requirements
 - This project support the [InteliJ IDEA](https://www.jetbrains.com/idea/)
-- JDK 11
+- Java JDK 11
 
 ## Run
 - On Ubuntu or Mac
@@ -29,3 +29,10 @@ Speech classifier of D2E AI block
 
 ### choice
 `{"method":"choice", "input":{"choice": ["오타와","토론토","몬트리올","밴쿠버","서울"], "answer": "정답은 오타와 인 것 같아"}}`
+
+## RestAPI test using the [Postman](https://www.postman.com)
+
+- Method GET
+- [Url] localhost:8080/classifier
+
+![Postman](docs/postman.png)
