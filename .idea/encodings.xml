@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/dic/choice.CSV" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/dic/com/choice_clean.CSV" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/dic/com/cklist_obj.txt" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/dic/com/cklist_picknum.txt" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/dic/com/cklist_vx.txt" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/dic/com/movements_clean.CSV" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/dic/com/picknum_clean.CSV" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/dic/com/yesno_clean.CSV" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/dic/movements.CSV" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/dic/picknum.CSV" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/dic/readme.txt" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/dic/yesno.CSV" charset="x-windows-949" />
+  </component>
+</project>
