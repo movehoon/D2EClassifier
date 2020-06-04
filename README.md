@@ -3,7 +3,7 @@ Speech classifier of D2E AI block
 
 ## Requirements
 - This project support the [InteliJ IDEA](https://www.jetbrains.com/idea/)
-- Java JDK 11
+- Java JDK > 8
 
 ## Run
 - On Ubuntu or Mac
@@ -32,7 +32,7 @@ Speech classifier of D2E AI block
 
 ## RestAPI test using the [Postman](https://www.postman.com)
 
-- Method GET
+- Method POST
 - [Url] localhost:8080/classifier
 
 ![Postman](docs/postman.png)
