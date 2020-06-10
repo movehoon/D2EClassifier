@@ -5,7 +5,7 @@ Speech classifier of D2E AI block
 - This project support the [InteliJ IDEA](https://www.jetbrains.com/idea/)
 - Java JDK > 8
 
-## Run
+## Run/Debug
 - [Menu] Run -> Edit Configurations...
 
 ![Run/Debug](docs/bootRun.png)
