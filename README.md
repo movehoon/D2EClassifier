@@ -12,16 +12,16 @@ Speech classifier of D2E AI block
 
 ## Example
 
-- yesno
+#### yesno
 `{"method":"yesno", "input":"맞는 것 같애"}`
 
-- movements
+#### movements
 `{"method":"movements", "input":"오른팔을 위로 올려봐"}`
 
-- picknum
+#### picknum
 `{"method":"picknum", "input":"사십칠이야"}`
 
-- choice
+#### choice
 `{"method":"choice", "input":{"choice": ["오타와","토론토","몬트리올","밴쿠버","서울"], "answer": "정답은 오타와 인 것 같아"}}`
 
 ## RestAPI test using the [Postman](https://www.postman.com)
