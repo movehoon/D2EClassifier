@@ -6,15 +6,9 @@ Speech classifier of D2E AI block
 - Java JDK > 8
 
 ## Run
-- On Ubuntu or Mac
+- [Menu] Run -> Edit Configurations...
 
-`./gradlew bootRun`
-
-- On Windows
-
-`./gradlew.bat bootRun`
-
-![Run](docs/D2EClassifier.gif)
+![Run/Debug](docs/bootRun.png)
 
 ## Example
 
