@@ -20,12 +20,12 @@ public class Interface_Yesno
 		input = fx.findNReplaceADV(input, rn, advlist);					//부사어를 찾고, 입력문에서는 삭제한다
 		String foundAdvDesc = fx.concatAdvExp();
 
-		//arrNum 설정부분. 완전일치를 아예 사용하지 않게 하려면 arrNum의 값을 -1을 준다
+		//arrNum 설정부분. 완전일치를 아예 사용하지 않게 하려면 arrNum의 값을 -1을 준다(yesno에서는 nono)
 		int arrNum = fx.findResponseExpression_Order_full(input, rn, expressArr, expressArr_Original, lastObject, objectlist);
 		lastObject = fx.getFoundFirstObject();								//이 과정에서 발견된 목적어를 가져온다
 
 		//부정 극성어 처리
-		if(arrNum!=-1)
+		if(arrNum!=-1)																//정상적인 경우
 			expression = fx.findAdverseExpression(input, arrNum, expression, expressArr_Original);
 
 		//일치하는 표현을 못 찾은 경우에 대하여

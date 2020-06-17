@@ -600,7 +600,8 @@ public class FindExpression
 			if(inputArr[i][0].matches(regex)&&ckDurDirOrder(inputArr, i))													// [1] 숫자가 발견되고,
 			{
 				time = inputArr[i][0];
-				durationStart = this.findStartPosition(inputArr, inputArr[i][1]);
+				//old. durationStart = this.findStartPosition(inputArr, inputArr[i][1]);
+				durationStart = this.findStartPosition(inputArr, i);
 
 				for(int j=i; j<inputArr.length; j++)
 				{
@@ -656,13 +657,23 @@ public class FindExpression
 	}
 
 
-	private int findStartPosition(String[][] inputArr, String arrIdx)
+	/**
+	 * 찾으려는 표현의 시작부분의 문자열 인덱스를 찾는다
+	 * @param inputArr
+	 * @param arrIdx
+	 * @return
+	 */
+	private int findStartPosition(String[][] inputArr, int arrIdx)
 	{
-		int targetArrIdx = Integer.parseInt(arrIdx);
+		//old. int targetArrIdx = Integer.parseInt(arrIdx);
+		int targetArrIdx = arrIdx;
 		int chrIdx = 0;
 
-		for(int i=0; i<=targetArrIdx; i++)
-			chrIdx += (inputArr[i].length + 1);
+		//old. for(int i=0; i<=targetArrIdx; i++) {
+		for(int i=0; i<targetArrIdx; i++) {
+			//old. chrIdx += (inputArr[i].length + 1);
+			chrIdx += (inputArr[i][0].length() + 1);
+		}
 
 		return chrIdx;
 	}
