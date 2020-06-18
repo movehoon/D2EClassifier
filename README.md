@@ -8,12 +8,13 @@ Speech classifier of D2E AI block
 ## Run/Debug
 - [Menu] Run -> Edit Configurations...
 
-![Run/Debug]
 * on Windows
-(docs/bootRun_win.png)
+
+![Run/Debug](docs/bootRun_win.png)
 
 * on Mac
-(docs/bootRun.png)
+
+![Run/Debug](docs/bootRun.png)
 
 ## Example
 
