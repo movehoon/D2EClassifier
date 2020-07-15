@@ -83,7 +83,9 @@ public class Interface_Choice
 
 		System.out.println("당신의 선택은 "+idx+"번, "+select+"이며, "+judge+"이고, 숫자형 결과는 "+result+"입니다.\n");
 
-		return output;
+		if (select == null)
+			select = "";
+		return select;
 	}
 
 
