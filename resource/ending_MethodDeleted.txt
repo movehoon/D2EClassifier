@@ -22050,6 +22050,7 @@
 자청혀서	자청하/VV + 어서/EC	SEPA
 작아져서	작아지/VV + 어서/EC	SEPA
 작아진다	작아지/VV + ㄴ다/EF	SEPA
+작은거랑	작/VA + 은/ETM + 것/NNB + 랑/JKB	SEPA
 작잡니다	작자/NNG + 이/VCP + ㅂ니다/EF	SEPA
 잔다더니	자/VV + ㄴ다더니/EC	SEPA
 잔답니더	자/VV + ㄴ답니더/EF	SEPA
@@ -23616,6 +23617,7 @@
 토해본다	토하/VV + 아/EC + 보/VX + ㄴ다/EF	SEPA
 통한다고	통하/VV + ㄴ다고/EC	SEPA
 통한다는	통하/VV + ㄴ다는/ETM	SEPA
+통합니다	통하/VV + ㅂ니다/EF	SEPA
 통해봐도	통하/VV + 아/EC + 보/VX + 아도/EC	SEPA
 통해서요	통하/VV + 아서요/EF	SEPA
 통해서일	통하/VV + 아서/EC + 이/VCP + ㄹ/ETM	SEPA
@@ -37961,6 +37963,7 @@
 이라뇨	이/VCP + 라뇨/EF	SEPA
 이라는	이/VCP + 라는/ETM	SEPA
 이라니	이/VCP + 라니/EF	SEPA
+이라닠	이/VCP + 라니/EF + ㅋ/IC	SEPA
 이라던	이/VCP + 라던/ETM	SEPA
 이라도	이/VCP + 라도/EC	SEPA
 이라두	이/VCP + 라두/EC	SEPA
@@ -40344,6 +40347,8 @@
 튕겨낼	튕기/VV + 어/EC + 내/VX + ㄹ/ETM	SEPA
 튕겨져	튕기/VV + 어/EC + 지/VX + 어/EC	SEPA
 튕겨준	튕기/VV + 어/EC + 주/VX + ㄴ/ETM	SEPA
+트린다	뜨리/XSN + ㄴ다/EF	SEPA
+트렸다	뜨리/XSN + 었/EP + 다/EF	SEPA
 트여서	트이/VV + 어서/EC	SEPA
 트여야	트이/VV + 어야/EC	SEPA
 트인다	트이/VV + ㄴ다/EF	SEPA
@@ -46375,6 +46380,7 @@
 왔냐	오/VV + 았/EP + 냐/EF	SEPA
 왔어	오/VV + 았/EP + 어/EF	SEPA
 왔오	오/VV + 았/EP + 오/EF	SEPA
+왜난	왜/MAG + 나/NP + 는/JX	SEPA
 왠고	왜/MAG + 이/VCP + ㄴ고/EC	SEPA
 외다	외다/EF	SEPA
 외운	외우/VV + ㄴ/ETM	SEPA
@@ -47301,31 +47307,22 @@
 진해	진하/VA + 아/EC	SEPA
 질걸	지/VV + ㄹ걸/EF	SEPA
 질겨	질기/VA + 어/EC	SEPA
-질과	질/XSN + 과/JC	SEPA
 질긴	질기/VA + ㄴ/ETM	SEPA
 질길	질기/VA + ㄹ/ETM	SEPA
 질까	지/VX + ㄹ까/EC	SEPA
 질날	질/XSN + 나/VV + ㄹ/ETM	SEPA
-질도	질/XSN + 도/JX	SEPA
 질된	질/XSN + 되/XSV + ㄴ/ETM	SEPA
 질될	질/XSN + 되/XSV + ㄹ/ETM	SEPA
-질두	질/XSN + 도/JX	SEPA
 질래	지/VV + ㄹ래/EC	SEPA
 질러	지르/VV + 어/EC	SEPA
 질려	질리/VV + 어/EC	SEPA
-질로	질/XSN + 로/JKB	SEPA
 질를	지르/VV + ㄹ/ETM	SEPA
 질린	질리/VV + ㄴ/ETM	SEPA
 질릴	질리/VV + ㄹ/ETM	SEPA
-질만	질/XSN + 만/JX	SEPA
 질방	질/XSN + 방/NNG	SEPA
 질식	질/XSN + 식/NNB	SEPA
 질에	질/XSN + 에/JKB	SEPA
 질용	질/XSN + 용/XSN	SEPA
-질은	질/XSN + 은/JX	SEPA
-질을	질/XSN + 을/JKO	SEPA
-질의	질/XSN + 의/JKG	SEPA
-질이	질/XSN + 이/JKS	SEPA
 질인	질/XSN + 이/VCP + ㄴ/ETM	SEPA
 질일	질/XSN + 이/VCP + ㄹ/ETM	SEPA
 질지	지/VX + ㄹ지/EC	SEPA
