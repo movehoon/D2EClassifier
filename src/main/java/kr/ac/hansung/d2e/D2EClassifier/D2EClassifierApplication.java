@@ -55,7 +55,7 @@ public class D2EClassifierApplication {
             String newDicType = jsonObject.get("method").getAsString();
             System.out.println("type:" + newDicType);
 
-            if (dicType != newDicType) {
+            if (!dicType.equals(newDicType)) {
                 System.out.println("Change type to " + newDicType);
                 mc.setDictypeProperty(newDicType);
             }
