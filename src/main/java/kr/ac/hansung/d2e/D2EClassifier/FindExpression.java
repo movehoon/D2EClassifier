@@ -120,6 +120,8 @@ public class FindExpression
 	 */
 	public int findResponseExpression_Order_full(String inputSentence, RHINO rn, String[][] expressArr, String[][] expressArr_original, String[] lastObject, String[] objectlist)
 	{
+		if(lastObject != null)
+			System.out.println(lastObject[0]);
 		GetNeededMorph gm = new GetNeededMorph();
 		int arrNum = -1;
 		String[] inputArr = gm.GetOutputPartArr_cklist(rn.ExternCall(inputSentence, true), cklist);
@@ -358,6 +360,7 @@ public class FindExpression
 	 */
 	public String findNReplaceADV(String inputSentence, RHINO rn, String[][] advlist)
 	{
+		this.setFoundAdvList();
 		inputSentence = inputSentence.replaceAll("\\s+", " ");
 		GetNeededMorph gm = new GetNeededMorph();
 		String[][] inputMorphArr = gm.GetOutputPartArr_cklist2D(rn.ExternCall(inputSentence, true), cklist);
@@ -536,6 +539,19 @@ public class FindExpression
 
 								break;				//완전히 찾았으면 전체 프로세스를 끝낸다
 							}
+
+							else if(inputMorphArr[j+1][0].contains("하지만"))  //else if 구문 추가("소심하지만 빠르게"와 같은 구문 인식을 위해)
+							{
+								found = true;
+								int eojulEnd = Integer.parseInt(inputMorphArr[j+1][1]);			//발견된 마지막 부분의 형태 어절 번호를 기록
+								inputModiForm = this.pasteSpecificEojul(inputEojulArr, eojulStart, eojulEnd);	//어절 번호를 기준으로 수식어를 추출
+								inputSentence = inputSentence.replace(inputModiForm.trim(), "").replaceAll("\\s+", " ");
+								if(modiType.equals("adv"))												//찾는 수식어가 부사어인 경우
+									this.foundGeneralAdvList.add(new String[] {modilist[i][0], modilist[i][1], modilist[i][2]});		//[0]은 발견된 수식어의 형태, [1]은 동작명세, [2]는 형태소
+
+								break;
+							}
+
 							else						//만약 끝까지 왔다면 found=true가 되어 advlist에서 더 나갈 부분이 없을 것이다
 								i2++;
 						}
@@ -988,7 +1004,6 @@ public class FindExpression
 			if(found)
 				break;
 		}
-
 		return found;
 	}
 

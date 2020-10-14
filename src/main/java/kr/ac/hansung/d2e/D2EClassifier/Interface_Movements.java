@@ -40,10 +40,14 @@ public class Interface_Movements {
 					expressArrPart = fx.findResponseExpression_noOrder(input, rn, expressArr_Original, lastObject, objectlist);
 					lastObject = fx.getFoundFirstObject();		//이 과정에서 발견된 목적어를 가져온다
 				}
-
 				//발견된 요소 출력하기
 				if(expressArrPart.length==0)
-					System.out.println("\nNOT_FOUND");
+				{
+					if(!foundAdvDesc.isEmpty())					// 발견된 부사어가 있다면
+						output = foundAdvDesc;
+					else
+						System.out.println("\nNOT_FOUND");
+				}
 				else
 				{
 					arrNum = fx.findMostHighObjAdv(expression, expressArrPart, objectlist, advlist, true, true);				//부사어의 목록과 목적어의 목록을 검사하여 가장 많은 배열의 넘버를 찾는다
@@ -119,13 +123,21 @@ public class Interface_Movements {
 		String b_col = expression[arrNum][1];
 
 		if(foundAdvDesc!=null)
+		{
 			b_col = this.changeArm(foundAdvDesc, b_col);
+			foundAdvDesc = this.ChangeDEGExpression(foundAdvDesc, lastObject);
+		}
 
-		if(b_col.startsWith("DYN")||b_col.startsWith("ADV"))					// '더', '빨리' 등 부사였다면, 앞 명령어의 목적어를 가져온다
+
+		if(b_col.startsWith("DYN"))					// '더', '빨리' 등 부사였다면, 앞 명령어의 목적어를 가져온다
 			b_col = fx.pasteLastObject_DYNADV(lastObject, b_col);
 
 		System.out.println(a_col+"\t"+b_col+foundAdvDesc);			// 부사어가 사용되었다면 그 내용을 덧붙인다
-		output = b_col+foundAdvDesc;
+		if(foundAdvDesc.contains("DEG"))
+			output = foundAdvDesc;
+		else
+			output = b_col+ "/" + foundAdvDesc;
+
 
 		return output;
 	}
@@ -160,6 +172,35 @@ public class Interface_Movements {
 		}
 
 		return b_col;
+	}
+
+	private String ChangeDEGExpression(String foundAdvDesc, String[] lastObject)   //'DEG-범위-목적어' 형태를 만들기 위해 추가한 메소드
+	{
+		String[] adv = foundAdvDesc.split("/");
+		for(int i=0; i<adv.length; i++)
+		{
+			if(adv[i].contains("DEG"))
+			{
+				String object = "";
+				for(int j=0; j<lastObject.length; j++)
+					object += lastObject[j];
+				adv[i] = adv[i].concat("-"+object);
+			}
+		}
+
+		foundAdvDesc = "";
+		for(int i=0; i<adv.length; i++)
+		{
+			if(adv[i].equals(""))
+				continue;
+
+			foundAdvDesc += adv[i] + "/";
+		}
+
+		if(foundAdvDesc.endsWith("/"))
+			foundAdvDesc = foundAdvDesc.substring(0, foundAdvDesc.length()-1);
+		return foundAdvDesc;
+
 	}
 
 }

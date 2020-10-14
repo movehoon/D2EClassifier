@@ -30,6 +30,7 @@ public class PreProcessor
 		}
 		else
 		{
+			input = this.editExpression(input);				//수정할 표현을 수정한다
 			input = this.splitComplexNoun(input, fio);		//입력문에 띄어써야 할 복합명사가 있는 경우, 띄운다.
 			input = this.splitVx(rn, input, ckVxlist);				//입력문에 보조용언이 있는 경우, 띄운다.
 			input = this.changeNumExpToIntExp(input);
@@ -372,6 +373,35 @@ public class PreProcessor
 		}
 
 		return found;
+	}
+
+	/**
+	 * ~봐, ~줘 의 표현을 삭제한다
+	 * @param input
+	 * @return
+	 */
+	private String editExpression(String input)
+	{
+		if(input.endsWith("해봐"))
+			input = input.replace("해봐", "해");
+		else if(input.endsWith("해 봐"))
+			input = input.replace("해 봐", "해");
+		else if(input.endsWith("해줘봐"))
+			input = input.replace("해줘봐", "해");
+		else if(input.endsWith("해 줘봐"))
+			input = input.replace("해 줘봐", "해");
+		else if(input.endsWith("해줘 봐"))
+			input = input.replace("해줘 봐", "해");
+		else if(input.endsWith("해줘"))
+			input = input.replace("해줘", "해");
+		else if(input.endsWith("해 줘"))
+			input = input.replace("해 줘", "해");
+		else if(input.endsWith("줘봐"))
+			input = input.replace("줘봐", "줘");
+		else if(input.endsWith("줘 봐"))
+			input = input.replace("줘 봐", "줘");
+
+		return input;
 	}
 
 
