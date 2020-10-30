@@ -120,6 +120,8 @@ public class FindExpression
 	 */
 	public int findResponseExpression_Order_full(String inputSentence, RHINO rn, String[][] expressArr, String[][] expressArr_original, String[] lastObject, String[] objectlist)
 	{
+		if(lastObject != null)
+			System.out.println(lastObject[0]);
 		GetNeededMorph gm = new GetNeededMorph();
 		int arrNum = -1;
 		String[] inputArr = gm.GetOutputPartArr_cklist(rn.ExternCall(inputSentence, true), cklist);
@@ -531,6 +533,7 @@ public class FindExpression
 								int eojulEnd = Integer.parseInt(inputMorphArr[j][1]);			//발견된 마지막 부분의 형태 어절 번호를 기록
 								inputModiForm = this.pasteSpecificEojul(inputEojulArr, eojulStart, eojulEnd);	//어절 번호를 기준으로 수식어를 추출
 								inputSentence = inputSentence.replace(inputModiForm.trim(), "").replaceAll("\\s+", " ");
+
 								if(modiType.equals("adv"))												//찾는 수식어가 부사어인 경우
 									this.foundGeneralAdvList.add(new String[] {modilist[i][0], modilist[i][1], modilist[i][2]});		//[0]은 발견된 수식어의 형태, [1]은 동작명세, [2]는 형태소
 

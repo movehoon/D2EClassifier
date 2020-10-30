@@ -18,11 +18,9 @@ public class Interface_Movements {
 		input = fx.findNReplaceADV(input, rn, advlist);					//부사어를 찾고, 입력문에서는 삭제한다
 		String foundAdvDesc = fx.concatAdvExp();
 
-		input = input.trim();
 
 		//arrNum 설정부분. 완전일치를 아예 사용하지 않게 하려면 arrNum의 값을 -1을 준다
 		boolean ok = this.ckGoodSentence(input, objectlist);		//적격 문장인지를 테스트한다.
-
 		if(ok)
 		{
 			//int arrNum = -1;
@@ -46,7 +44,7 @@ public class Interface_Movements {
 				if(expressArrPart.length==0)
 				{
 					if(!foundAdvDesc.isEmpty())					// 발견된 부사어가 있다면
-						output = foundAdvDesc.substring(1, foundAdvDesc.length()-1);
+						output = foundAdvDesc;
 					else
 						System.out.println("\nNOT_FOUND");
 				}
@@ -64,13 +62,7 @@ public class Interface_Movements {
 		}
 		else
 		{
-			if(!foundAdvDesc.isEmpty())
-			{
-				foundAdvDesc = foundAdvDesc.substring(1, foundAdvDesc.length()-1);
-				output = foundAdvDesc;
-			}
-			else
-				System.out.println("\nNOT_FOUND/Not-Good-Sentence");
+			System.out.println("\nNOT_FOUND/Not-Good-Sentence");
 		}
 
 		return output.replaceAll("/+", "/");
@@ -100,25 +92,15 @@ public class Interface_Movements {
 	private boolean ckShortObjectSentence(String input, String[] objectlist)
 	{
 		boolean ok = true;
-
-		if(input.isEmpty())
+		for(int i=0; i<objectlist.length; i++)
 		{
-			ok = false;
-		}
-
-		else
-		{
-			for(int i=0; i<objectlist.length; i++)
+			if(input.equals(objectlist[i]))
 			{
-				if(input.equals(objectlist[i]))
-				{
-					ok = false;
-					System.out.print("\nNOT_FOUND/Not-Enough_Info");			//'손', '팔', '오른팔'과 같이 주요 목적어로만 너무 짧은 문장인 경우
-					break;
-				}
+				ok = false;
+				System.out.print("\nNOT_FOUND/Not-Enough_Info");			//'손', '팔', '오른팔'과 같이 주요 목적어로만 너무 짧은 문장인 경우
+				break;
 			}
 		}
-
 		return ok;
 	}
 
@@ -150,14 +132,12 @@ public class Interface_Movements {
 		if(b_col.startsWith("DYN"))					// '더', '빨리' 등 부사였다면, 앞 명령어의 목적어를 가져온다
 			b_col = fx.pasteLastObject_DYNADV(lastObject, b_col);
 
-		System.out.println(a_col+"\t"+b_col+"/"+foundAdvDesc);			// 부사어가 사용되었다면 그 내용을 덧붙인다
+		System.out.println(a_col+"\t"+b_col+foundAdvDesc);			// 부사어가 사용되었다면 그 내용을 덧붙인다
 		if(foundAdvDesc.contains("DEG"))
 			output = foundAdvDesc;
 		else
 			output = b_col+ "/" + foundAdvDesc;
 
-		if(output.endsWith("/"))
-			output = output.substring(0, output.length()-1);
 
 		return output;
 	}
