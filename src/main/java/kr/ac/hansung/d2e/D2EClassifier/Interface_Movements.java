@@ -6,9 +6,11 @@ import rhino.RHINO;
 
 public class Interface_Movements {
 	static boolean findSimilarExpressionWithOrder = false;				//유사한 표현을 찾을 때 사전의 순서와 같은 표현만 찾을지 여부
+	String[] object_arr = {"머리고개얼굴목", "오른팔", "왼팔"};
 
 	public String classsInterface(JsonObject jsonObject, FileIO fio, PreProcessor pp, FindExpression fx, RHINO rn, MakeQuestion mq, String dicType, String[] cklist, String[] ckVxlist, String[][] expression, String[][] expressArr, String[][] expressArr_Original, String[] objectlist, String[] lastObject, String[][] advlist)
 	{
+		fx.setFoundFirstObject();
 		String output = "NOT_FOUND";
 		String input = jsonObject.get("input").getAsString();
 		input = pp.splitComplexNounNVxOfInput(rn, dicType, input, fio, ckVxlist);		// 입력문에 대하여 복합명사와 보조용언 띄어쓰기를 수행합니다 (단, choice 블럭은 원문을 그대로 리턴)
@@ -19,7 +21,6 @@ public class Interface_Movements {
 		String foundAdvDesc = fx.concatAdvExp();
 
 		input = input.trim();
-
 		//arrNum 설정부분. 완전일치를 아예 사용하지 않게 하려면 arrNum의 값을 -1을 준다
 		boolean ok = this.ckGoodSentence(input, objectlist);		//적격 문장인지를 테스트한다.
 
@@ -72,7 +73,7 @@ public class Interface_Movements {
 			else
 				System.out.println("\nNOT_FOUND/Not-Good-Sentence");
 		}
-
+		System.out.println("결과 : "+output);
 		return output.replaceAll("/+", "/");
 	}
 
@@ -143,7 +144,7 @@ public class Interface_Movements {
 		if(foundAdvDesc!=null)
 		{
 			b_col = this.changeArm(foundAdvDesc, b_col);
-			foundAdvDesc = this.ChangeDEGExpression(foundAdvDesc, lastObject);
+			//foundAdvDesc = this.ChangeDEGExpression(foundAdvDesc, lastObject);
 		}
 
 
@@ -151,10 +152,17 @@ public class Interface_Movements {
 			b_col = fx.pasteLastObject_DYNADV(lastObject, b_col);
 
 		System.out.println(a_col+"\t"+b_col+"/"+foundAdvDesc);			// 부사어가 사용되었다면 그 내용을 덧붙인다
+		output = b_col+ "/" + foundAdvDesc;
+
 		if(foundAdvDesc.contains("DEG"))
-			output = foundAdvDesc;
+			output = this.ChangeDEGExpression(output, lastObject);
 		else
-			output = b_col+ "/" + foundAdvDesc;
+		{
+			if(!foundAdvDesc.contains(b_col))	//기존에 찾은 수식어와 같을 경우 추가 안함
+				output = b_col+ "/" + foundAdvDesc;
+			
+			else output = foundAdvDesc;
+		}
 
 		if(output.endsWith("/"))
 			output = output.substring(0, output.length()-1);
@@ -194,20 +202,41 @@ public class Interface_Movements {
 		return b_col;
 	}
 
-	private String ChangeDEGExpression(String foundAdvDesc, String[] lastObject)   //'DEG-범위-목적어' 형태를 만들기 위해 추가한 메소드
+	private String ChangeDEGExpression(String output, String[] lastObject)   //'DEG-범위-목적어' 형태를 만들기 위해 추가한 메소드
 	{
-		String[] adv = foundAdvDesc.split("/");
+
+		String object = "";
+		String[] adv = output.split("/");
+
+		if(lastObject == null)
+		{
+			for(int i=0; i<object_arr.length; i++)
+			{
+				if(adv[0].split("-")[0] == object_arr[i])
+					object = object_arr[i];
+			}
+		}
+		else
+		{
+			for(int j=0; j<lastObject.length; j++)
+				object += lastObject[j];
+		}
+
 		for(int i=0; i<adv.length; i++)
 		{
 			if(adv[i].contains("DEG"))
 			{
-				String object = "";
-				for(int j=0; j<lastObject.length; j++)
-					object += lastObject[j];
-				adv[i] = adv[i].concat("-"+object);
+				if(object != "")
+				{
+					adv[i] = adv[i].concat("-"+object);
+				}
 			}
 		}
 
+		output = adv[0];
+		for(int i=1; i<adv.length; i++)
+			output += "/" + adv[i];
+		/*
 		foundAdvDesc = "";
 		for(int i=0; i<adv.length; i++)
 		{
@@ -219,7 +248,9 @@ public class Interface_Movements {
 
 		if(foundAdvDesc.endsWith("/"))
 			foundAdvDesc = foundAdvDesc.substring(0, foundAdvDesc.length()-1);
-		return foundAdvDesc;
+
+		 */
+		return output;
 
 	}
 

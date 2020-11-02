@@ -19,6 +19,8 @@ public class FindExpression
 	private String foundDirectionAdvExp;						//발견된 방향표현 부사어 결과 표현
 	private ArrayList<String[]> foundGeneralAdvList;		//발견된 [0]일반 부사어, [1]동작명세, [2]형태소
 
+	public void setFoundFirstObject() { this.foundFirstObject = null;}
+
 	public void setFoundAdvList() {
 		this.foundGeneralAdvList = new ArrayList<String[]>();
 	}
@@ -371,8 +373,15 @@ public class FindExpression
 			//[0] 지연시간(숫자), [1] 지연시간단위(초, 분, 시간), [2] 지연시간표현이 삭제된 입력문
 			durationExp = this.findDurationTime(inputSentence, inputMorphArr);
 			inputSentence = durationExp[2].replaceAll("\\s+", " ");														//지연시간표현이 삭제된 입력문
+			if(inputSentence.contains(durationExp[0]) && inputSentence.contains(durationExp[1]))
+			{
+				inputSentence = inputSentence.replaceAll(durationExp[0], "");
+				inputSentence = inputSentence.replaceAll(durationExp[1], "").trim();
+			}
+
 			inputMorphArr = gm.GetOutputPartArr_cklist2D(rn.ExternCall(inputSentence, true), cklist);		//삭제된 표현으로 다시 형태소 분석
 			this.foundDurationAdvExp = getFoundMeasureAdv("DUR", durationExp);								//지연시간 결과표현
+
 
 
 			//[방향표현]이 있었다면 각도를 담고, 해당표현이 삭제된 입력문을 받아온다
@@ -381,6 +390,10 @@ public class FindExpression
 			inputSentence = directionExp[2].replaceAll("\\s+", " ");														//방향표현이 삭제된 입력문
 			inputMorphArr = gm.GetOutputPartArr_cklist2D(rn.ExternCall(inputSentence, true), cklist);		//삭제된 표현으로 다시 형태소 분석
 			this.foundDirectionAdvExp = getFoundMeasureAdv("DEG", directionExp);								//방향부사 결과표현
+			//inputSentence = directionExp[2].replaceAll(directionExp[0], " ");
+			//inputSentence = inputSentence.replaceAll(directionExp[1], " ");
+			//inputSentence.trim();
+
 
 
 			//[일반 부사어] 찾기는 인터페이스가 다르다. 또한 다른 특수 부사어를 모두 삭제하고 난 다음에 마지막으로 적용해야 한다
@@ -416,7 +429,10 @@ public class FindExpression
 
 		//일반 부사어 연결
 		for(int i=0; i<foundGeneralAdv.length; i++)
-			outputExp = outputExp.concat(foundGeneralAdv[i][1])+"/";
+		{
+			if(!outputExp.contains(foundGeneralAdv[i][1]))
+				outputExp = outputExp.concat(foundGeneralAdv[i][1])+"/";
+		}
 
 		//시간지연 부사어 연결
 		outputExp = outputExp.concat(foundDurationAdv)+"/";
@@ -530,6 +546,14 @@ public class FindExpression
 								found = true;
 								int eojulEnd = Integer.parseInt(inputMorphArr[j][1]);			//발견된 마지막 부분의 형태 어절 번호를 기록
 								inputModiForm = this.pasteSpecificEojul(inputEojulArr, eojulStart, eojulEnd);	//어절 번호를 기준으로 수식어를 추출
+								//
+								//
+								//
+								//
+								//
+								//
+								// System.out.println(modilistArr[i2]+"   "+inputModiForm);
+								//for(int z=0; z<inputEojulArr.length; z++) System.out.println("---"+inputEojulArr[z]);
 								inputSentence = inputSentence.replace(inputModiForm.trim(), "").replaceAll("\\s+", " ");
 								if(modiType.equals("adv"))												//찾는 수식어가 부사어인 경우
 									this.foundGeneralAdvList.add(new String[] {modilist[i][0], modilist[i][1], modilist[i][2]});		//[0]은 발견된 수식어의 형태, [1]은 동작명세, [2]는 형태소
@@ -1001,6 +1025,7 @@ public class FindExpression
 			if(found)
 				break;
 		}
+
 		return found;
 	}
 
