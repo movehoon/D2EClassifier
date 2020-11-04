@@ -58,6 +58,7 @@ public class D2EClassifierApplication {
             if (!dicType.equals(newDicType)) {
                 System.out.println("Change type to " + newDicType);
                 mc.setDictypeProperty(newDicType);
+                dicType = newDicType;
             }
             result = mc.getOuput(input, jsonType);
         } catch (Exception e) {
