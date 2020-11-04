@@ -281,7 +281,11 @@ public class FindExpression
 		this.ckHaveObject(inputArr, objectlist);													//발견된 첫번째 목적어를 클래스 변수에 담게 한다.
 		int[][] testArr = this.sort2DArr(gm, expressArrOriginalCnt);						//2차원 배열을 숫자 크기에 따라 내림차순으로 정렬
 		int[][] testArr_ordered = gm.remove0Value2D(testArr, 1);						//공통요소가 많은 것으로 내림차순 정렬하여 내보낸다
-		int[][] testArr_high = gm.getHighNumber2D(testArr_ordered, 1, 2);			//공통요소가 가장 많은 그룹들만 추려낸다
+		int[][] testArr_high;
+		try {
+			testArr_high = gm.getHighNumber2D(testArr_ordered, 1, 2);            //공통요소가 가장 많은 그룹들만 추려낸다
+		}
+		catch(Exception e) {testArr_high = new int[0][];}
 		return testArr_high;
 	}
 
