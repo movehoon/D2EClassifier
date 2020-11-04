@@ -1072,10 +1072,10 @@ public class FindExpression
 			{
 				if(inputArr[objNum-1].equals("쪽"))					//당연히 왼, 오른 등의 수식어가 있을 것이다
 				{
-					objArr = new String[3];
+					objArr = new String[2];
 					objArr[0] = inputArr[objNum-2];					//왼, 오른, ...
-					objArr[1] = inputArr[objNum-1];					//쪽
-					objArr[2] = inputArr[objNum];					//눈, 팔, 손
+					//objArr[1] = inputArr[objNum-1];					//쪽
+					objArr[1] = inputArr[objNum];					//눈, 팔, 손
 				}
 				else if(inputArr[objNum-1].equals("왼")||inputArr[objNum-1].equals("오른")||inputArr[objNum-1].equals("양")||inputArr[objNum-1].equals("위")||inputArr[objNum-1].equals("아래"))
 				{
